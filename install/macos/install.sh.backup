@@ -1,0 +1,74 @@
+#!/bin/bash
+
+# Function to get the absolute path of the script's directory
+get_script_dir() {
+  SCRIPT_SOURCE="${BASH_SOURCE[0]}"
+  while [ -h "$SCRIPT_SOURCE" ]; do # resolve $SCRIPT_SOURCE until the file is no longer a symlink
+    DIR="$( cd -P "$( dirname "$SCRIPT_SOURCE" )" >/dev/null 2>&1 && pwd )"
+    SCRIPT_SOURCE="$(readlink "$SCRIPT_SOURCE")"
+    [[ $SCRIPT_SOURCE != /* ]] && SCRIPT_SOURCE="$DIR/$SCRIPT_SOURCE" # if $SCRIPT_SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+  done
+  DIR="$( cd -P "$( dirname "$SCRIPT_SOURCE" )" >/dev/null 2>&1 && pwd )"
+  echo "$DIR"
+}
+
+# Get the root directory of the repository
+SCRIPT_DIR=$(get_script_dir)
+REPO_ROOT=$(cd "$SCRIPT_DIR/../../" && pwd)
+
+# Flags
+FORCE=false
+COMMAND=""
+
+for arg in "$@"; do
+  if [ "$arg" = "--force" ]; then
+    FORCE=true
+  elif [ -z "$COMMAND" ]; then
+    # Set COMMAND to the first non-force argument
+    COMMAND=$arg
+  else
+    echo "Error: Too many commands. Usage: $0 [--force] [command]"
+    exit 1
+  fi
+done
+
+# Function to check if the destination exists
+destination_exists() {
+  [ -e "$1" ]
+}
+
+# Function to clear the destination if force is enabled
+clear_destination_if_forced() {
+  if [ "$FORCE" = true ]; then
+    if [ -L "$1" ] || [ -d "$1" ]; then
+      echo "Removing existing config at $1 due to --force flag."
+      rm -rf "$1"
+    fi
+  fi
+}
+
+# Function to create a symlink
+create_symlink() {
+  echo "Creating symlink for config..."
+  mkdir -p "$(dirname "$2")"
+  ln -s "$1" "$2"
+  echo "Config linked to $1."
+}
+
+# Neovim installation
+if [ -z "$COMMAND" ] || [ "$COMMAND" = "neovim" ]; then
+  echo "Installing Neovim config..."
+  NVIM_CONFIG_SOURCE="$REPO_ROOT/tools/neovim"
+  NVIM_CONFIG_DEST="$HOME/.config/nvim"
+
+  clear_destination_if_forced "$NVIM_CONFIG_DEST"
+
+  if destination_exists "$NVIM_CONFIG_DEST"; then
+    echo "Neovim config already exists at $NVIM_CONFIG_DEST. Skipping."
+    echo "Use --force to overwrite."
+  else
+    create_symlink "$NVIM_CONFIG_SOURCE" "$NVIM_CONFIG_DEST"
+  fi
+fi
+
+echo "Done."
