@@ -16,14 +16,6 @@ get_script_dir() {
 SCRIPT_DIR=$(get_script_dir)
 REPO_ROOT=$(cd "$SCRIPT_DIR/../../" && pwd)
 
-# Source the configuration file
-CONFIG_FILE="$SCRIPT_DIR/config.sh"
-if [ ! -f "$CONFIG_FILE" ]; then
-    echo "Error: Configuration file not found at $CONFIG_FILE"
-    exit 1
-fi
-source "$CONFIG_FILE"
-
 # Flags
 FORCE=false
 COMMAND=""
@@ -63,35 +55,32 @@ create_symlink() {
   echo "Config for $1 linked from $2 to $3."
 }
 
-# --- Main Installation Logic ---
+simple_install() {
+  TOOL_ID=$1
+  NAME=$2
+  SRC=$3
+  DST=$4
 
-# Build a list of available tool IDs for validation later
-ALL_TOOL_IDS=$(echo "$CONFIG_DATA" | sed '/^$/d' | cut -d';' -f1)
-
-# Read the config data line by line
-echo "$CONFIG_DATA" | while IFS=';' read -r tool_id name src dst; do
-  # Skip empty lines in the string
-  [ -z "$tool_id" ] && continue
-
-  # Check if we should install this tool
-  if [ -z "$COMMAND" ] || [ "$COMMAND" = "$tool_id" ]; then
+  if [ -z "$COMMAND" ] || [ "$COMMAND" = "$TOOL_ID" ]; then
+    echo "--- Installing $NAME config... ---"
     
-    echo "--- Installing $name config... ---"
-    
-    CONFIG_SOURCE="$REPO_ROOT/$src"
-    CONFIG_DEST="$HOME/$dst"
+    CONFIG_SOURCE="$REPO_ROOT/$SRC"
+    CONFIG_DEST="$HOME/$DST"
 
     clear_destination_if_forced "$CONFIG_DEST"
 
     if destination_exists "$CONFIG_DEST"; then
-      echo "$name config already exists at $CONFIG_DEST. Skipping."
+      echo "$NAME config already exists at $CONFIG_DEST. Skipping."
       echo "Use --force to overwrite."
     else
-      create_symlink "$name" "$CONFIG_SOURCE" "$CONFIG_DEST"
+      create_symlink "$NAME" "$CONFIG_SOURCE" "$CONFIG_DEST"
     fi
     echo # Add a newline for better readability
   fi
-done
+}
+
+# --- Main Installation Logic ---
+simple_install "neovim" "Neovim" "tools/neovim" ".config/nvim"
 
 # If a command was specified but not found, show an error.
 if [ -n "$COMMAND" ] && ! echo "$ALL_TOOL_IDS" | grep -q -w "$COMMAND"; then

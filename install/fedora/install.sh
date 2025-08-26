@@ -34,13 +34,13 @@ done
 
 # Function to check if the destination exists
 destination_exists() {
-  [ -e "$1" ]
+  [ -e "$1" ] || [ -L "$1" ]
 }
 
 # Function to clear the destination if force is enabled
 clear_destination_if_forced() {
   if [ "$FORCE" = true ]; then
-    if [ -L "$1" ] || [ -d "$1" ]; then
+    if destination_exists "$1"; then
       echo "Removing existing config at $1 due to --force flag."
       rm -rf "$1"
     fi
@@ -49,26 +49,53 @@ clear_destination_if_forced() {
 
 # Function to create a symlink
 create_symlink() {
-  echo "Creating symlink for config..."
-  mkdir -p "$(dirname "$2")"
-  ln -s "$1" "$2"
-  echo "Config linked to $1."
+  echo "Creating symlink for $1..."
+  mkdir -p "$(dirname "$3")"
+  ln -s "$2" "$3"
+  echo "Config for $1 linked from $2 to $3."
 }
 
-# Neovim installation
-if [ -z "$COMMAND" ] || [ "$COMMAND" = "neovim" ]; then
-  echo "Installing Neovim config..."
-  NVIM_CONFIG_SOURCE="$REPO_ROOT/tools/neovim"
-  NVIM_CONFIG_DEST="$HOME/.config/nvim"
+# Function to check if a package is installed
+is_package_installed() {
+  dnf list installed "$1" &> /dev/null
+}
 
-  clear_destination_if_forced "$NVIM_CONFIG_DEST"
+simple_install() {
+  TOOL_ID=$1
+  NAME=$2
+  SRC=$3
+  DST=$4
 
-  if destination_exists "$NVIM_CONFIG_DEST"; then
-    echo "Neovim config already exists at $NVIM_CONFIG_DEST. Skipping."
-    echo "Use --force to overwrite."
-  else
-    create_symlink "$NVIM_CONFIG_SOURCE" "$NVIM_CONFIG_DEST"
+  if [ -z "$COMMAND" ] || [ "$COMMAND" = "$TOOL_ID" ]; then
+    echo "--- Installing $NAME config... ---"
+    
+    CONFIG_SOURCE="$REPO_ROOT/$SRC"
+    CONFIG_DEST="$HOME/$DST"
+
+    clear_destination_if_forced "$CONFIG_DEST"
+
+    if destination_exists "$CONFIG_DEST"; then
+      echo "$NAME config already exists at $CONFIG_DEST. Skipping."
+      echo "Use --force to overwrite."
+    else
+      create_symlink "$NAME" "$CONFIG_SOURCE" "$CONFIG_DEST"
+    fi
+    echo # Add a newline for better readability
   fi
+}
+
+# --- Main Installation Logic ---
+simple_install "neovim" "Neovim" "tools/neovim" ".config/nvim"
+
+if is_package_installed "input-remapper"; then
+  simple_install "input-remapper" "Input Remapper" "tools/input-remapper" ".config/input-remapper"
+fi
+
+# If a command was specified but not found, show an error.
+if [ -n "$COMMAND" ] && ! echo "$ALL_TOOL_IDS" | grep -q -w "$COMMAND"; then
+    echo "Error: Tool '$COMMAND' not found in configuration."
+    echo "Available tools: $(echo $ALL_TOOL_IDS | tr '\n' ' ' | sed 's/ $//')"
+    exit 1
 fi
 
 echo "Done."
