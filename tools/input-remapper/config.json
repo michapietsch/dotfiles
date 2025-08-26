@@ -1,4 +1,6 @@
 {
     "version": "2.1.1",
-    "autoload": {}
+    "autoload": {
+        "VMware VMware Virtual USB Keyboard": "new preset"
+    }
 }
