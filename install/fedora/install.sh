@@ -88,14 +88,7 @@ simple_install() {
 simple_install "neovim" "Neovim" "tools/neovim" ".config/nvim"
 
 if is_package_installed "input-remapper"; then
-  simple_install "input-remapper" "Input Remapper" "tools/input-remapper" ".config/input-remapper"
-fi
-
-# If a command was specified but not found, show an error.
-if [ -n "$COMMAND" ] && ! echo "$ALL_TOOL_IDS" | grep -q -w "$COMMAND"; then
-    echo "Error: Tool '$COMMAND' not found in configuration."
-    echo "Available tools: $(echo $ALL_TOOL_IDS | tr '\n' ' ' | sed 's/ $//')"
-    exit 1
+  simple_install "input-remapper" "Input Remapper" "tools/input-remapper" ".config/input-remapper-2"
 fi
 
 echo "Done."

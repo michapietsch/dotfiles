@@ -82,11 +82,4 @@ simple_install() {
 # --- Main Installation Logic ---
 simple_install "neovim" "Neovim" "tools/neovim" ".config/nvim"
 
-# If a command was specified but not found, show an error.
-if [ -n "$COMMAND" ] && ! echo "$ALL_TOOL_IDS" | grep -q -w "$COMMAND"; then
-    echo "Error: Tool '$COMMAND' not found in configuration."
-    echo "Available tools: $(echo $ALL_TOOL_IDS | tr '\n' ' ' | sed 's/ $//')"
-    exit 1
-fi
-
 echo "Done."
