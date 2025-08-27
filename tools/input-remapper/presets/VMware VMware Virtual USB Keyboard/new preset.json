@@ -15,46 +15,12 @@
         "input_combination": [
             {
                 "type": 1,
-                "code": 54,
-                "origin_hash": "db06ac0cd162ee8117fbb7f9f439c3b5"
-            },
-            {
-                "type": 1,
-                "code": 41,
-                "origin_hash": "db06ac0cd162ee8117fbb7f9f439c3b5"
-            }
-        ],
-        "target_uinput": "keyboard",
-        "output_symbol": "Shift_R Key_102ND",
-        "mapping_type": "key_macro"
-    },
-    {
-        "input_combination": [
-            {
-                "type": 1,
                 "code": 86,
                 "origin_hash": "db06ac0cd162ee8117fbb7f9f439c3b5"
             }
         ],
         "target_uinput": "keyboard",
         "output_symbol": "KEY_GRAVE",
-        "mapping_type": "key_macro"
-    },
-    {
-        "input_combination": [
-            {
-                "type": 1,
-                "code": 54,
-                "origin_hash": "db06ac0cd162ee8117fbb7f9f439c3b5"
-            },
-            {
-                "type": 1,
-                "code": 86,
-                "origin_hash": "db06ac0cd162ee8117fbb7f9f439c3b5"
-            }
-        ],
-        "target_uinput": "keyboard",
-        "output_symbol": "Shift_R KEY_GRAVE",
         "mapping_type": "key_macro"
     }
 ]
