@@ -1,0 +1,36 @@
+{
+  "title": "Profile Switcher",
+  "rules": [
+    {
+      "description": "Cycle through profiles with Mouse Keypad #1",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "1",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "~/.config/karabiner/assets/scripts/profile_switcher.sh"
+            }
+          ],
+          "conditions": [ 
+            {
+              "type": "device_if",
+              "identifiers": [
+                {
+                  "vendor_id": 9639,
+                  "product_id": 64007,
+                  "is_keyboard": true 
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -4,11 +4,11 @@
 get_script_dir() {
   SCRIPT_SOURCE="${BASH_SOURCE[0]}"
   while [ -h "$SCRIPT_SOURCE" ]; do # resolve $SCRIPT_SOURCE until the file is no longer a symlink
-    DIR="$( cd -P "$( dirname "$SCRIPT_SOURCE" )" >/dev/null 2>&1 && pwd )"
+    DIR="$(cd -P "$(dirname "$SCRIPT_SOURCE")" >/dev/null 2>&1 && pwd)"
     SCRIPT_SOURCE="$(readlink "$SCRIPT_SOURCE")"
     [[ $SCRIPT_SOURCE != /* ]] && SCRIPT_SOURCE="$DIR/$SCRIPT_SOURCE" # if $SCRIPT_SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
   done
-  DIR="$( cd -P "$( dirname "$SCRIPT_SOURCE" )" >/dev/null 2>&1 && pwd )"
+  DIR="$(cd -P "$(dirname "$SCRIPT_SOURCE")" >/dev/null 2>&1 && pwd)"
   echo "$DIR"
 }
 
@@ -63,7 +63,7 @@ simple_install() {
 
   if [ -z "$COMMAND" ] || [ "$COMMAND" = "$TOOL_ID" ]; then
     echo "--- Installing $NAME config... ---"
-    
+
     CONFIG_SOURCE="$REPO_ROOT/$SRC"
     CONFIG_DEST="$HOME/$DST"
 
@@ -81,5 +81,7 @@ simple_install() {
 
 # --- Main Installation Logic ---
 simple_install "neovim" "Neovim" "tools/neovim" ".config/nvim"
+
+simple_install "karabiner" "Karabiner" "tools/karabiner" ".config/karabiner"
 
 echo "Done."
