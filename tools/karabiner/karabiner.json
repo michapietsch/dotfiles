@@ -36,6 +36,32 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Ctrl+W (now Cmd+W when swapped) as Ctrl+W in Kitty",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "net.kovidgoyal.kitty"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "w",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "w",
+                                        "modifiers": ["control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Ctrl+B (now Cmd+B when swapped) as Ctrl+B in Tmux",
                         "manipulators": [
                             {
