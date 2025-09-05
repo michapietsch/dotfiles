@@ -62,7 +62,7 @@ simple_install() {
   DST=$4
 
   if [ -z "$COMMAND" ] || [ "$COMMAND" = "$TOOL_ID" ]; then
-    echo "--- Installing $NAME config... ---"
+    echo "--- Installing $NAME ($TOOL_ID) config... ---"
 
     CONFIG_SOURCE="$REPO_ROOT/$SRC"
     CONFIG_DEST="$HOME/$DST"
@@ -83,5 +83,9 @@ simple_install() {
 simple_install "neovim" "Neovim" "tools/neovim" ".config/nvim"
 
 simple_install "karabiner" "Karabiner" "tools/karabiner" ".config/karabiner"
+
+simple_install "zshrc" "Zsh config" "tools/zsh/.zshrc" ".zshrc"
+
+simple_install "zshaliases" "Zsh aliases" "tools/zsh/.aliases.zsh" ".aliases.zsh"
 
 echo "Done."
