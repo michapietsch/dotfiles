@@ -181,7 +181,7 @@
                         ]
                     },
                     {
-                        "description": "Ctrl+A,C,F,N,Q,R,T,V,W,X,Z,LeftArrow",
+                        "description": "Ctrl+A,C,F,N,Q,R,S,T,V,W,X,Z,LeftArrow",
                         "manipulators": [
                             {
                                 "from": {
@@ -256,6 +256,19 @@
                                 "to": [
                                     {
                                         "key_code": "r",
+                                        "modifiers": ["command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": { "mandatory": ["control"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "s",
                                         "modifiers": ["command"]
                                     }
                                 ],
