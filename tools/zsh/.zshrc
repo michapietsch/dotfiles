@@ -39,3 +39,6 @@ export HERD_PHP_74_INI_SCAN_DIR="/Users/michapietsch/Library/Application Support
 # Herd injected PHP 8.3 configuration.
 export HERD_PHP_83_INI_SCAN_DIR="/Users/michapietsch/Library/Application Support/Herd/config/php/83/"
 
+
+# Added by CodeRabbit CLI installer
+export PATH="/Users/michapietsch/.local/bin:$PATH"
