@@ -7,6 +7,7 @@ alias gst='git status';
 alias gd='git diff -w';
 alias gl='git log --graph --oneline --all';
 alias gcam='git commit -am';
+alias gprp='git pull --rebase; git push';
 
 
 # Composer:
