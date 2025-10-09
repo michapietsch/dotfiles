@@ -12,7 +12,7 @@ source ~/.aliases.zsh
 [[ -f ~/.aliases_for_projects.zsh ]] && source ~/.aliases_for_projects.zsh
 
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-export PATH="~/.composer/vendor/bin:$PATH"
+export PATH=~/.composer/vendor/bin:$PATH
 export PATH="/opt/homebrew/bin:$PATH"
 
 # Herd injected PHP binary.
