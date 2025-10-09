@@ -1,15 +1,15 @@
-require("conform").setup({
-  format_on_save = {
-    timeout_ms = 500,
-    lsp_fallback = true,
+return {
+  "stevearc/conform.nvim",
+  opts = {
+    formatters_by_ft = {
+      php = { "php_cs_fixer" },
+      javascript = { "prettier" },
+      vue = { "prettier" },
+      typescript = { "prettier" },
+      json = { "prettier" },
+      css = { "prettier" },
+      markdown = { "prettier" },
+      html = { "prettier" },
+    },
   },
-  formatters_by_ft = {
-    javascript = { "prettier" },
-    vue = { "prettier" },
-    typescript = { "prettier" },
-    json = { "prettier" },
-    css = { "prettier" },
-    markdown = { "prettier" },
-    html = { "prettier" },
-  },
-})
+}
