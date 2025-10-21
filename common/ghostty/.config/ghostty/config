@@ -1,5 +1,10 @@
 theme = catppuccin-mocha.conf
 
+keybind = ctrl+shift+j=ignore
+keybind = ctrl+shift+j=new_split:down
+keybind = ctrl+shift+l=ignore
+keybind = ctrl+shift+l=new_split:right
+
 keybind = ctrl+h=ignore
 keybind = ctrl+h=goto_split:left
 keybind = ctrl+j=ignore

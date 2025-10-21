@@ -416,7 +416,6 @@
                 }
             ],
             "name": "UsingMac",
-            "selected": true,
             "simple_modifications": [
                 {
                     "from": { "key_code": "right_command" },
@@ -454,6 +453,7 @@
                 }
             ],
             "name": "UsingLinux",
+            "selected": true,
             "simple_modifications": [
                 {
                     "from": { "key_code": "left_command" },
