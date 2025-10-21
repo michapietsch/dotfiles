@@ -3,3 +3,4 @@
 -- Add any additional keymaps here
 
 vim.keymap.set("n", "<leader>z1", "<cmd>set foldlevel=1<CR>", { desc = "Fold level 1" })
+vim.keymap.set("n", "<leader>z99", "<cmd>set foldlevel=99<CR>", { desc = "Fold level 99" })

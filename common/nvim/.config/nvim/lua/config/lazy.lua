@@ -15,7 +15,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  import = "lazyvim.plugins.extras.editor.folds",
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins", opts = {
@@ -23,6 +22,18 @@ require("lazy").setup({
     } },
 
     { import = "lazyvim.plugins.extras.lsp.none-ls" },
+
+    {
+      "neovim/nvim-lspconfig",
+      opts = {
+        folds = { enabled = true },
+        capabilities = {
+          textDocument = {
+            foldingRange = { dynamicRegistration = false, lineFoldingOnly = true },
+          },
+        },
+      },
+    },
 
     -- import/override with your plugins
     { import = "plugins" },
