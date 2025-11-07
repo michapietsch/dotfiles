@@ -297,6 +297,24 @@
                         ]
                     },
                     {
+                        "description": "Ctrl+Shift+V",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "v",
+                                    "modifiers": { "mandatory": ["control", "shift"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "v",
+                                        "modifiers": ["command", "shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Ctrl+A,C,F,N,Q,R,S,T,V,W,X,Z,LeftArrow",
                         "manipulators": [
                             {

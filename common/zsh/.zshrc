@@ -42,3 +42,7 @@ export HERD_PHP_83_INI_SCAN_DIR="/Users/michapietsch/Library/Application Support
 
 # Added by CodeRabbit CLI installer
 export PATH="/Users/michapietsch/.local/bin:$PATH"
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
