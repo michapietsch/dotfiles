@@ -13,3 +13,4 @@ keybind = ctrl+k=ignore
 keybind = ctrl+k=goto_split:up
 keybind = ctrl+l=ignore
 keybind = ctrl+l=goto_split:right
+
