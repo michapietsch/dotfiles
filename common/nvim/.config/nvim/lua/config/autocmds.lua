@@ -47,3 +47,21 @@ end, {
     return { "root", "cwd", "abs", "file", "dir" }
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "html",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "php",
+    "blade",
+    "twig",
+  },
+  callback = function()
+    -- make "-" part of words → "text-sm" is one keyword
+    vim.opt_local.iskeyword:append("-")
+  end,
+})
