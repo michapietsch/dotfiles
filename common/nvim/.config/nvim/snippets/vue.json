@@ -1,0 +1,18 @@
+{
+  "Vue Hello": {
+    "prefix": "vh",
+    "body": [
+      "<template>",
+      "  <div>$1</div>",
+      "</template>",
+      "",
+      "<script setup>",
+      "const msg = \"$2\"",
+      "</script>",
+      "",
+      "<style scoped>",
+      "</style>"
+    ],
+    "description": "Very simple Vue component"
+  }
+}
