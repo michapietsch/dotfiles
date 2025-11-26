@@ -46,3 +46,11 @@ export PATH="/Users/michapietsch/.local/bin:$PATH"
 . "$HOME/.atuin/bin/env"
 
 eval "$(atuin init zsh)"
+
+# bun completions
+[ -s "/Users/michapietsch/.bun/_bun" ] && source "/Users/michapietsch/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
