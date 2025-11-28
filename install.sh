@@ -23,10 +23,22 @@ fi
 # but the folder itself will not be linked.
 PROTECTED_FOLDERS=(".config" "atuin")
 
+APPS_HANDLED_DIRECTLY=("vscode")
+
 is_protected_folder() {
 	local name="$1"
 	for protected in "${PROTECTED_FOLDERS[@]}"; do
 		if [ "$name" == "$protected" ]; then
+			return 0
+		fi
+	done
+	return 1
+}
+
+is_app_handled_directly() {
+	local name="$1"
+	for handled_directly in "${APPS_HANDLED_DIRECTLY[@]}"; do
+		if [ "$name" == "$handled_directly" ]; then
 			return 0
 		fi
 	done
@@ -79,11 +91,29 @@ process_item() {
 	fi
 }
 
+handle_directly() {
+	echo "Handling directly: $1"
+
+	package_name=$(basename "$package_path")
+
+	if [ "$package_name" == "vscode" ]; then
+		vscode_dir="Library/Application Support/Code/User"
+		mkdir -p "$vscode_dir"
+		process_item "$package_path/Library/Application Support/Code/User/settings.json" "$vscode_dir/settings.json"
+		process_item "$package_path/Library/Application Support/Code/User/keybindings.json" "$vscode_dir/keybindings.json"
+	fi
+}
+
 # Scan for packages in the system directory
 for package_path in "$SYSTEM_DIR"/*; do
 	if [ -d "$package_path" ]; then
 		package_name=$(basename "$package_path")
 		echo "Processing package: $package_name"
+
+		if is_app_handled_directly "$package_name"; then
+			handle_directly "$package_path"
+			continue
+		fi
 
 		# Scan the contents of the package directory
 		for item_path in "$package_path"/*; do

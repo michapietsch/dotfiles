@@ -1,0 +1,102 @@
+// Place your key bindings in this file to overwrite the defaults
+[
+    // Remove defaults and add new bindings for CamelCase and snake_case cursor navigation and selection
+    {
+        "key": "alt+right",
+        "command": "-cursorWordEndRight",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "alt+left",
+        "command": "-cursorWordStartLeft",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "alt+shift+left",
+        "command": "-cursorWordStartLeftSelect",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "alt+shift+right",
+        "command": "-cursorWordEndRightSelect",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+alt+right",
+        "command": "-selectPartOfWord.moveRight"
+    },
+    {
+        "key": "ctrl+alt+left",
+        "command": "-selectPartOfWord.moveLeft"
+    },
+    {
+        "key": "alt+right",
+        "command": "selectPartOfWord.moveRight"
+    },
+    {
+        "key": "alt+left",
+        "command": "selectPartOfWord.moveLeft"
+    },
+    {
+        "key": "alt+shift+right",
+        "command": "selectPartOfWord.selectRight"
+    },
+    {
+        "key": "alt+shift+left",
+        "command": "selectPartOfWord.selectLeft"
+    },
+    {
+        "key": "ctrl+r",
+        "command": "-workbench.action.openRecent"
+    },
+    {
+        "key": "ctrl+r",
+        "command": "revealInExplorer",
+        "when": "editorFocus"
+    },
+    {
+        "key": "cmd+down",
+        "command": "-cursorBottom",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "cmd+up",
+        "command": "-cursorTop",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "shift+cmd+up",
+        "command": "-cursorTopSelect",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "shift+cmd+down",
+        "command": "-cursorBottomSelect",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "cmd+up",
+        "command": "cursorMove",
+        "args": {
+            "to": "up",
+            "by": "line",
+            "value": 5
+        },
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+down",
+        "command": "cursorMove",
+        "args": {
+            "to": "down",
+            "by": "line",
+            "value": 5
+        },
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+alt+7",
+        "command": "-gitlens.gitCommands",
+        "when": "!gitlens:disabled && config.gitlens.keymap == 'alternate'"
+    }
+]

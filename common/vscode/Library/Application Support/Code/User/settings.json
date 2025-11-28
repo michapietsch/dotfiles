@@ -1,0 +1,70 @@
+// Platzieren Sie Ihre Einstellungen in dieser Datei, um die Standardeinstellungen zu überschreiben.
+{
+    "editor.lineHeight": 26,
+    "explorer.confirmDragAndDrop": false,
+    "editor.fontFamily": "Fira Code, Inconsolata, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "files.associations": {
+        "*.html5": "html",
+        "*.theme": "php",
+        "*.csv": "CSV (semicolon)"
+    },
+    "explorer.autoReveal": false,
+    "workbench.editor.enablePreview": false,
+    "window.restoreFullscreen": true,
+    "breadcrumbs.enabled": true,
+    "search.useIgnoreFiles": false,
+    "javascript.updateImportsOnFileMove.enabled": "never",
+    "workbench.startupEditor": "none",
+    "workbench.list.horizontalScrolling": true,
+    "workbench.colorTheme": "Night Owl Light (No Italics)",
+    "editor.minimap.enabled": false,
+    "editor.showFoldingControls": "always",
+    "editor.cursorBlinking": "smooth",
+    "gitlens.statusBar.enabled": false,
+    "gitlens.codeLens.recentChange.enabled": false,
+    "gitlens.codeLens.authors.enabled": false,
+    "[php]": {
+        "editor.defaultFormatter": "junstyle.php-cs-fixer"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.fontWeight": "500",
+    "gulp.autoDetect": "off",
+    "search.exclude": {
+        "**/Volumes/250exFAT/**": true
+    },
+    "files.watcherExclude": {
+        "**/Volumes/250exFAT/**": true
+    },
+    "php-cs-fixer.onsave": true,
+    "php-cs-fixer.lastDownload": 1586162651081,
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    "terminal.integrated.profiles.osx": {
+        "Wzsh": {
+            "path": "/bin/zsh"
+        }
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.renderWhitespace": "all",
+    "files.autoSaveDelay": 100,
+    "[vue]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[yml]": {
+        "editor.formatOnSave": false
+    },
+    "editor.formatOnSave": true,
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.tabSize": 2,
+    "security.workspace.trust.untrustedFiles": "open",
+    "debug.disassemblyView.showSourceCode": false,
+    "php-cs-fixer.executablePath": "/usr/local/bin/php-cs-fixer",
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "editor.tabCompletion": "on"
+}
